@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw polygon with mapbox-gl-draw | MapLibre Examples</title>
+    <meta property="og:description" content="Use mapbox-gl-draw to draw a polygon and Turf.js to calculate its area in square meters.">
+    <link rel="stylesheet" href="https://www.unpkg.com/@mapbox/mapbox-gl-draw@1.5.0/dist/mapbox-gl-draw.css">
+    <style>
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    </style>
+    <style>
+
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+
+
+    .calculation-box {
+        height: 75px;
+        width: 150px;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px;
+        text-align: center;
+    }
+
+    p {
+        font-family: 'Open Sans';
+        margin: 0;
+        font-size: 13px;
+    }
+
+
+        .maplibregl-map.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: pointer;
+        }
+        .maplibregl-map.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: move;
+        }
+        .maplibregl-map.mouse-add .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: crosshair;
+        }
+        .maplibregl-map.mouse-move.mode-direct_select .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+        }
+        .maplibregl-map.mode-direct_select.feature-vertex.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: move;
+        }
+        .maplibregl-map.mode-direct_select.feature-midpoint.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: cell;
+        }
+        .maplibregl-map.mode-direct_select.feature-feature.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: move;
+        }
+        .maplibregl-map.mode-static.mouse-pointer  .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+        }
+
+</style>
+</head>
+<body>
+    <a href="../../index.html" style="position:fixed;top:10px;right:10px;z-index:9999;background:#1a1a24;color:#00d4aa;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:system-ui,sans-serif;font-size:14px;border:1px solid #2a2a3a;">← All Examples</a>
+    <style>
+    .calculation-box {
+        height: 75px;
+        width: 150px;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px;
+        text-align: center;
+    }
+
+    p {
+        font-family: 'Open Sans';
+        margin: 0;
+        font-size: 13px;
+    }
+</style>
+
+    <link
+        rel="stylesheet"
+        href="https://www.unpkg.com/@mapbox/mapbox-gl-draw@1.5.0/dist/mapbox-gl-draw.css"
+    />
+    <div id="map"></div>
+    <div class="calculation-box">
+        <p>Draw a polygon using the draw tools.</p>
+        <div id="calculated-area"></div>
+    </div>
+
+    <!-- Fix Mapbox Draw cursors: CSS classes to point to MapLibre GL classes -->
+    <style>
+        .maplibregl-map.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: pointer;
+        }
+        .maplibregl-map.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: move;
+        }
+        .maplibregl-map.mouse-add .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: crosshair;
+        }
+        .maplibregl-map.mouse-move.mode-direct_select .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+        }
+        .maplibregl-map.mode-direct_select.feature-vertex.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: move;
+        }
+        .maplibregl-map.mode-direct_select.feature-midpoint.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: cell;
+        }
+        .maplibregl-map.mode-direct_select.feature-feature.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: move;
+        }
+        .maplibregl-map.mode-static.mouse-pointer  .maplibregl-canvas-container.maplibregl-interactive {
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+        }
+    </style>
+    <script src="https://www.unpkg.com/@mapbox/mapbox-gl-draw@1.5.0/dist/mapbox-gl-draw.js"></script>
+    <script type="module" src="./draw-polygon-with-mapbox-gl-draw.ts"></script>
+</body>
+</html>

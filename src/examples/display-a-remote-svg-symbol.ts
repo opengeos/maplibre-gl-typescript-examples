@@ -1,0 +1,56 @@
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+
+const map = new maplibregl.Map({
+        container: 'map', // container id
+        style: 'https://demotiles.maplibre.org/style.json', // style URL
+        center: [0, 0], // starting position [lng, lat]
+        zoom: 1, // starting zoom
+        maplibreLogo: true
+    });
+    map.on('load', () => {
+        const existingImages = {};
+        map.on('styleimagemissing', async (e) => {
+            if (existingImages[e.id]) {
+                return;
+            }
+            existingImages[e.id] = true;
+            const response = await fetch(e.id);
+            const svgText = await response.text();
+            const svg = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgText);
+            const image = new Image();
+            const promise = new Promise((resolve) => {
+                image.onload = resolve;
+            });
+            image.src = svg;
+            await promise; // Wait for the image to load
+            map.addImage(e.id, image);
+        });
+
+        map.addSource('point', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+                    {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [0, 0]
+                        },
+                    },
+
+                ]
+            }
+        });
+        map.addLayer({
+            'id': 'svg-symbol',
+            'type': 'symbol',
+            'source': 'point',
+            'layout': {
+                'icon-image': 'https://maplibre.org/maplibre-gl-js/docs/assets/logo.svg',
+                'icon-overlap': 'always',
+                'text-overlap': 'always'
+            }
+        });
+    });

@@ -1,0 +1,46 @@
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+
+const map = new maplibregl.Map({
+        container: 'map',
+        style: 'https://tiles.openfreemap.org/styles/bright',
+        center: [-88.13734351262877, 35.137451890638886],
+        zoom: 4
+    });
+
+    map.on('load', () => {
+        const layers = map.getStyle().layers;
+        // Find the index of the first symbol layer in the map style
+        let firstSymbolId;
+        for (let i = 0; i < layers.length; i++) {
+            if (layers[i].type === 'symbol') {
+                firstSymbolId = layers[i].id;
+                break;
+            }
+        }
+        map.addSource('urban-areas', {
+            'type': 'geojson',
+            'data':
+                'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_urban_areas.geojson'
+        });
+        map.addLayer(
+            {
+                'id': 'urban-areas-fill',
+                'type': 'fill',
+                'source': 'urban-areas',
+                'layout': {},
+                'paint': {
+                    'fill-color': '#f08',
+                    'fill-opacity': 0.4
+                }
+                // This is the important part of this example: the addLayer
+                // method takes 2 arguments: the layer as an object, and a string
+                // representing another layer's name. if the other layer
+                // exists in the stylesheet already, the new layer will be positioned
+                // right before that layer in the stack, making it possible to put
+                // 'overlays' anywhere in the layer stack.
+                // Insert the layer beneath the first symbol layer.
+            },
+            firstSymbolId
+        );
+    });
