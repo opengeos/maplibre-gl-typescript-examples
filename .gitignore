@@ -26,4 +26,6 @@ Thumbs.db
 *.tsbuildinfo
 
 # Conversion script (optional - remove if you want to keep it)
-convert-examples.py
+# convert-examples.py
+node_modules/*
+.vite/
