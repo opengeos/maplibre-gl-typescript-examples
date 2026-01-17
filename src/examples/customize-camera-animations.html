@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize camera animations | MapLibre Examples</title>
+    <meta property="og:description" content="Customize camera animations using AnimationOptions.">
+    
+    <style>
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    </style>
+    <style>
+
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    
+
+    .map-overlay {
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        position: absolute;
+        width: 200px;
+        top: 0;
+        left: 0;
+        padding: 10px;
+    }
+
+    .map-overlay .map-overlay-inner {
+        background-color: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .map-overlay-inner fieldset {
+        border: none;
+        padding: 0;
+        margin: 0 0 10px;
+    }
+
+    .map-overlay-inner fieldset:last-child {
+        margin: 0;
+    }
+
+    .map-overlay-inner select {
+        width: 100%;
+    }
+
+    .map-overlay-inner p {
+        margin: 0;
+    }
+
+    .map-overlay-inner label {
+        display: block;
+        font-weight: bold;
+    }
+
+    .map-overlay-inner button {
+        background-color: cornflowerblue;
+        color: white;
+        border-radius: 5px;
+        display: inline-block;
+        height: 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .map-overlay-inner button:focus {
+        outline: none;
+    }
+
+    .map-overlay-inner button:hover {
+        background-color: blue;
+        box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.1);
+        -webkit-transition: background-color 500ms linear;
+        -ms-transition: background-color 500ms linear;
+        transition: background-color 500ms linear;
+    }
+
+    .offset > label,
+    .offset > input {
+        display: inline;
+    }
+
+    #animateLabel {
+        display: inline-block;
+        min-width: 20px;
+    }
+
+</style>
+</head>
+<body>
+    <a href="../../index.html" style="position:fixed;top:10px;right:10px;z-index:9999;background:#1a1a24;color:#00d4aa;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:system-ui,sans-serif;font-size:14px;border:1px solid #2a2a3a;">← All Examples</a>
+    <style>
+    .map-overlay {
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        position: absolute;
+        width: 200px;
+        top: 0;
+        left: 0;
+        padding: 10px;
+    }
+
+    .map-overlay .map-overlay-inner {
+        background-color: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .map-overlay-inner fieldset {
+        border: none;
+        padding: 0;
+        margin: 0 0 10px;
+    }
+
+    .map-overlay-inner fieldset:last-child {
+        margin: 0;
+    }
+
+    .map-overlay-inner select {
+        width: 100%;
+    }
+
+    .map-overlay-inner p {
+        margin: 0;
+    }
+
+    .map-overlay-inner label {
+        display: block;
+        font-weight: bold;
+    }
+
+    .map-overlay-inner button {
+        background-color: cornflowerblue;
+        color: white;
+        border-radius: 5px;
+        display: inline-block;
+        height: 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .map-overlay-inner button:focus {
+        outline: none;
+    }
+
+    .map-overlay-inner button:hover {
+        background-color: blue;
+        box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.1);
+        -webkit-transition: background-color 500ms linear;
+        -ms-transition: background-color 500ms linear;
+        transition: background-color 500ms linear;
+    }
+
+    .offset > label,
+    .offset > input {
+        display: inline;
+    }
+
+    #animateLabel {
+        display: inline-block;
+        min-width: 20px;
+    }
+</style>
+
+<div id="map"></div>
+<div class="map-overlay top">
+    <div class="map-overlay-inner">
+        <fieldset>
+            <label for="easing">Select easing function</label>
+            <select id="easing" name="easing">
+                <option value="easeInCubic">Ease In Cubic</option>
+                <option value="easeOutQuint">Ease Out Quint</option>
+                <option value="easeInOutCirc">Ease In/Out Circ</option>
+                <option value="easeOutBounce">Ease Out Bounce</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <label for="duration">Set animation duration</label>
+            <p id="durationValue"></p>
+            <input
+                type="range"
+                id="duration"
+                name="duration"
+                min="0"
+                max="10000"
+                step="500"
+                value="1000"
+            />
+        </fieldset>
+        <fieldset>
+            <label>Animate camera motion</label>
+            <label for="animate" id="animateLabel">Yes</label>
+            <input type="checkbox" id="animate" name="animate" checked />
+        </fieldset>
+        <fieldset class="offset">
+            <label for="offset-x">Offset-X</label>
+            <input
+                type="number"
+                id="offset-x"
+                name="offset-x"
+                min="-200"
+                max="200"
+                step="50"
+                value="0"
+            />
+        </fieldset>
+        <fieldset class="offset">
+            <label for="offset-y">Offset-Y</label>
+            <input
+                type="number"
+                id="offset-y"
+                name="offset-y"
+                min="-200"
+                max="200"
+                step="50"
+                value="0"
+            />
+            <p>Offsets can be negative</p>
+        </fieldset>
+        <button type="button" id="animateButton" name="test-animation">
+            Test Animation
+        </button>
+    </div>
+</div>
+    
+    <script type="module" src="./customize-camera-animations.ts"></script>
+</body>
+</html>

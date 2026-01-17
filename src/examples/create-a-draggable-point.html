@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a draggable point | MapLibre Examples</title>
+    <meta property="og:description" content="Drag the point to a new location on a map and populate its coordinates in a display.">
+    
+    <style>
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    </style>
+    <style>
+
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    
+
+    .coordinates {
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 18px;
+        border-radius: 3px;
+        display: none;
+    }
+
+</style>
+</head>
+<body>
+    <a href="../../index.html" style="position:fixed;top:10px;right:10px;z-index:9999;background:#1a1a24;color:#00d4aa;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:system-ui,sans-serif;font-size:14px;border:1px solid #2a2a3a;">← All Examples</a>
+    <style>
+    .coordinates {
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 18px;
+        border-radius: 3px;
+        display: none;
+    }
+</style>
+
+<div id="map"></div>
+<pre id="coordinates" class="coordinates"></pre>
+    
+    <script type="module" src="./create-a-draggable-point.ts"></script>
+</body>
+</html>

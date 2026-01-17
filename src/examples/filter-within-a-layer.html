@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter within a Layer | MapLibre Examples</title>
+    <meta property="og:description" content="Filter a layer based on user input using setFilter().">
+    
+    <style>
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    </style>
+    <style>
+
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    
+
+    html, body, #map {
+        height: 100%;
+    }
+
+    .map-overlay {
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        position: absolute;
+        width: 31.8%;
+        top: 0;
+        left: 0;
+        padding: 10px;
+    }
+
+    .map-overlay .map-overlay-inner {
+        background-color: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .map-overlay input {
+        margin: 2px;
+    }
+
+    input[type=number] {
+        width: 25%
+    }
+
+    #filter-result {
+        font-size: 8px;
+        font-family: "Courier New";
+    }
+
+</style>
+</head>
+<body>
+    <a href="../../index.html" style="position:fixed;top:10px;right:10px;z-index:9999;background:#1a1a24;color:#00d4aa;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:system-ui,sans-serif;font-size:14px;border:1px solid #2a2a3a;">← All Examples</a>
+    <style>
+    html, body, #map {
+        height: 100%;
+    }
+
+    .map-overlay {
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        position: absolute;
+        width: 31.8%;
+        top: 0;
+        left: 0;
+        padding: 10px;
+    }
+
+    .map-overlay .map-overlay-inner {
+        background-color: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .map-overlay input {
+        margin: 2px;
+    }
+
+    input[type=number] {
+        width: 25%
+    }
+
+    #filter-result {
+        font-size: 8px;
+        font-family: "Courier New";
+    }
+</style>
+<div id="map"></div>
+
+<div class="map-overlay top">
+    <div class="map-overlay-inner">
+        <nav id="nav-filter">
+            <fieldset>
+                <legend>🫨 Earthquake <code>felt</code>?</legend>
+                <div>
+                    <input id="felt" type="checkbox" />
+                    <label for="felt">Apply <code>felt</code> Filter</label>
+                    <div>
+                        <div>
+                            <label for="operator-felt">Operator:</label>
+                            <select name="operator" id="operator-felt">
+                                <option value=">">></option>
+                                <option value="==" selected>==</option>
+                                <option value="<">&lt;</option>
+                            </select>
+                            <br>
+                            <label for="range-felt">Felt:</label>
+                            <input type="number" id="range-felt" name="range" value="4" min="1.0" max="10000" />
+                        </div>
+                    </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>📈 Magnitude</legend>
+                <div>
+                    <input id="mag" type="checkbox" />
+                    <label for="mag">Apply <code>magnitude</code> Filter</label>
+                    <div>
+                        <div>
+                            <label for="operator-mag">Operator:</label>
+                            <select name="operator" id="operator-mag">
+                                <option value=">">></option>
+                                <option value="==" selected>==</option>
+                                <option value="<">&lt;</option>
+                            </select>
+                            <br>
+                            <label for="range-mag">Magnitude:</label>
+                            <input type="number" id="range-mag" name="range" value="2.71" min="0.0" max="100" />
+                        </div>
+                    </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>🌊 Tsunami (0 or 1)</legend>
+                <input id="tsunami" type="checkbox" />
+                <label for="tsunami">Apply <code>tsunami</code> filter</label>
+                <div id="radio-tsunamis">
+                    <input type="radio" id="t0" name="tsunami" value="0" /><label for="t0">0</label>
+                    <input type="radio" id="t1" name="tsunami" value="1" /><label for="t1">1</label>
+                </div>
+            </fieldset>
+        </nav>
+        <hr />
+        <div id='filter-result'>["all"]</div>
+    </div>
+</div>
+    
+    <script type="module" src="./filter-within-a-layer.ts"></script>
+</body>
+</html>

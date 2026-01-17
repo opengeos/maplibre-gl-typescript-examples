@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle deck.gl layer | MapLibre Examples</title>
+    <meta property="og:description" content="Toggle deck.gl layer using maplibre.">
+    
+    <style>
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    </style>
+    <style>
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body,
+      #map {
+        height: 100%;
+      }
+      #toggle-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: rgb(130, 25, 191);
+        color: #f0ead6;
+        font-size: 1.2rem;
+        min-width: 70px;
+        border-radius: 5px;
+        border: none;
+        padding: 5px 10px;
+        transition: 0.3s;
+      }
+      #toggle-button:hover {
+        scale: 1.1;
+        box-shadow: 0 0 4px 4px gray;
+      }
+      /* Deck.gl layer is added as an overlay, popup needs to be displayed over it */
+      .maplibregl-popup {
+        z-index: 2;
+      }
+    
+</style>
+</head>
+<body>
+    <a href="../../index.html" style="position:fixed;top:10px;right:10px;z-index:9999;background:#1a1a24;color:#00d4aa;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:system-ui,sans-serif;font-size:14px;border:1px solid #2a2a3a;">← All Examples</a>
+    <div id="map"></div>
+    <button id="toggle-button">Hide</button>
+    <script src="https://unpkg.com/deck.gl@8.9.33/dist.min.js"></script>
+    <script type="module" src="./toggle-deckgl-layer.ts"></script>
+</body>
+</html>

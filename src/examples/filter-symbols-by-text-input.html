@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter symbols by text input | MapLibre Examples</title>
+    <meta property="og:description" content="Filter symbols by icon name by typing in a text input.">
+    
+    <style>
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    </style>
+    <style>
+
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    
+
+    .filter-ctrl {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1;
+    }
+
+    .filter-ctrl input[type='search'] {
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        border: 0;
+        background-color: #fff;
+        margin: 0;
+        color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        width: 180px;
+    }
+
+</style>
+</head>
+<body>
+    <a href="../../index.html" style="position:fixed;top:10px;right:10px;z-index:9999;background:#1a1a24;color:#00d4aa;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:system-ui,sans-serif;font-size:14px;border:1px solid #2a2a3a;">← All Examples</a>
+    <style>
+    .filter-ctrl {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1;
+    }
+
+    .filter-ctrl input[type='search'] {
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        border: 0;
+        background-color: #fff;
+        margin: 0;
+        color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        width: 180px;
+    }
+</style>
+<div id="map"></div>
+<div class="filter-ctrl">
+    <input
+        id="filter-input"
+        type="search"
+        name="filter"
+        placeholder="Filter by name"
+    />
+</div>
+    
+    <script type="module" src="./filter-symbols-by-text-input.ts"></script>
+</body>
+</html>
