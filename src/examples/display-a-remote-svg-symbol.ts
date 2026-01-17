@@ -39,7 +39,7 @@ const map = new maplibregl.Map({
                             'coordinates': [0, 0]
                         },
                     },
-                    
+
                 ]
             }
         });

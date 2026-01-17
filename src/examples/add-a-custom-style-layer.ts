@@ -19,7 +19,7 @@ const map = new maplibregl.Map({
         onAdd (map, gl) {
         // create GLSL source for vertex shader
             const vertexSource = `#version 300 es
-            
+
             uniform mat4 u_matrix;
             in vec2 a_pos;
             void main() {

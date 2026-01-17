@@ -10,7 +10,7 @@ const map = new maplibregl.Map({
       container: 'map',
       canvasContextAttributes: {antialias: true}
   });
-  
+
   // The 'building' layer in the streets vector source contains building-height
   // data from OpenStreetMap.
   map.on('load', () => {

@@ -156,7 +156,7 @@ function createExampleCard(example: Example): HTMLElement {
   card.className = 'example-card';
   // In dev mode, reference .ts files which Vite serves; in production, .html files are built
   card.href = `./src/examples/${example.id}.html`;
-  
+
   card.innerHTML = `
     <div class="example-preview">
       <div class="example-preview-map loading-skeleton"></div>
@@ -179,42 +179,42 @@ function createExampleCard(example: Example): HTMLElement {
       </div>
     </div>
   `;
-  
+
   return card;
 }
 
 function renderExamples(filteredExamples: Example[]): void {
   examplesGrid.innerHTML = '';
-  
+
   if (filteredExamples.length === 0) {
     noResults.style.display = 'block';
     examplesGrid.style.display = 'none';
   } else {
     noResults.style.display = 'none';
     examplesGrid.style.display = 'grid';
-    
+
     filteredExamples.forEach(example => {
       examplesGrid.appendChild(createExampleCard(example));
     });
   }
-  
+
   visibleCount.textContent = filteredExamples.length.toString();
 }
 
 function filterExamples(): void {
   const searchTerm = searchInput.value.toLowerCase();
-  
+
   const filtered = examples.filter(example => {
-    const matchesSearch = 
+    const matchesSearch =
       example.title.toLowerCase().includes(searchTerm) ||
       example.description.toLowerCase().includes(searchTerm) ||
       example.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-    
+
     const matchesCategory = activeCategory === 'all' || example.category === activeCategory;
-    
+
     return matchesSearch && matchesCategory;
   });
-  
+
   renderExamples(filtered);
 }
 
@@ -227,7 +227,7 @@ categoriesContainer.addEventListener('click', (e) => {
     // Update active state
     document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
     target.classList.add('active');
-    
+
     activeCategory = target.dataset.category || 'all';
     filterExamples();
   }

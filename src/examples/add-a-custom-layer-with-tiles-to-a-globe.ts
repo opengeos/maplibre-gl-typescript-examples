@@ -92,12 +92,12 @@ import 'maplibre-gl/dist/maplibre-gl.css';
             const vertexSource = `#version 300 es
             ${shaderDescription.vertexShaderPrelude}
             ${shaderDescription.define}
-            
+
             in vec2 a_pos;
             out mediump vec2 v_pos;
 
             void main() {
-                
+
                 gl_Position = projectTile(a_pos);
                 // We divide by EXTENT here just so we have something reasonable to display in the pixel shader.
                 v_pos = a_pos / float(${EXTENT});

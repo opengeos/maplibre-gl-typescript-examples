@@ -61,7 +61,7 @@ const map = new maplibregl.Map({
             // Inject MapLibre projection code
             ${shaderDescription.vertexShaderPrelude}
             ${shaderDescription.define}
-            
+
             in vec2 a_pos;
 
             void main() {

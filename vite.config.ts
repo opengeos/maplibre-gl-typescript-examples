@@ -8,7 +8,7 @@ function getExampleInputs(): Record<string, string> {
   const inputs: Record<string, string> = {
     main: resolve(__dirname, 'index.html'),
   };
-  
+
   try {
     const files = readdirSync(examplesDir);
     files.forEach(file => {
@@ -20,7 +20,7 @@ function getExampleInputs(): Record<string, string> {
   } catch (_e) {
     // Directory might not exist yet during initial setup
   }
-  
+
   return inputs;
 }
 
