@@ -2,6 +2,7 @@
 """
 Convert MapLibre HTML examples to TypeScript modules.
 """
+
 import os
 import re
 from pathlib import Path
